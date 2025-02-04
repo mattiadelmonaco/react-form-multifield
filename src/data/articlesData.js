@@ -5,7 +5,7 @@ export default [
     url: "#",
     author: "Mario Rossi",
     content: "Consigli pratici per gestire il tempo in modo efficace.",
-    selected: "FrontEnd",
+    category: "FrontEnd",
     available: true,
   },
   {
@@ -14,7 +14,7 @@ export default [
     url: "#",
     author: "Luca Bianchi",
     content: "Una panoramica sugli strumenti più utili per il lavoro remoto.",
-    selected: "BackEnd",
+    category: "BackEnd",
     available: true,
   },
   {
@@ -23,7 +23,7 @@ export default [
     url: "#",
     author: "Giulia Verdi",
     content: "Tecniche semplici per iniziare a meditare ogni giorno.",
-    selected: "UI/UX",
+    category: "UI/UX",
     available: true,
   },
 ];

@@ -5,6 +5,7 @@ export default function Main() {
   const [articleTitle, setArticleTitle] = useState("");
   const [articleAuthor, setArticleAuthor] = useState("");
   const [articleContent, setArticleContent] = useState("");
+  const [articleCategory, setArticleCategory] = useState("FrontEnd");
   const [isPublished, setIsPublished] = useState(false);
 
   const [articlesData, setArticleData] = useState(articles);
@@ -26,6 +27,7 @@ export default function Main() {
     setArticleTitle("");
     setArticleAuthor("");
     setArticleContent("");
+    setArticleCategory("FrontEnd");
     setIsPublished(false);
   };
 
@@ -111,8 +113,14 @@ export default function Main() {
               required
             />
             <div className="form__select">
-              <label htmlFor="select">Scegli un'opzione:</label>
-              <select id="select" className="form__inputArea" required>
+              <label htmlFor="category">Scegli una categoria:</label>
+              <select
+                id="category"
+                className="form__inputArea"
+                value={articleCategory}
+                onChange={(e) => setArticleCategory(e.target.value)}
+                required
+              >
                 <option value="FrontEnd">FrontEnd</option>
                 <option value="BackEnd">BackEnd</option>
                 <option value="UI/UX">UI/UX</option>
