@@ -72,6 +72,42 @@ export default function Main() {
               }}
               required
             />
+            <input
+              className="form__inputArea"
+              type="text"
+              placeholder="Inserisci autore nuovo articolo"
+              value={articleTitle}
+              onChange={(e) => {
+                setArticleTitle(e.target.value);
+              }}
+              required
+            />
+            <input
+              className="form__inputArea form__contentArea"
+              type="text"
+              placeholder="Inserisci contenuto nuovo articolo"
+              value={articleTitle}
+              onChange={(e) => {
+                setArticleTitle(e.target.value);
+              }}
+              required
+            />
+            <div className="form__select">
+              <label htmlFor="select">Scegli un'opzione:</label>
+              <select id="select" className="form__inputArea" required>
+                <option value="FrontEnd">FrontEnd</option>
+                <option value="BackEnd">BackEnd</option>
+                <option value="UI/UX">UI/UX</option>
+              </select>
+            </div>
+            <div className="form__checkbox">
+              <label htmlFor="pubblicato">Pubblicato</label>
+              <input
+                id="pubblicato"
+                type="checkbox"
+                className="form__checkbox--input"
+              />
+            </div>
             <button className="form__submitBtn" type="submit">
               Aggiungi articolo
             </button>
