@@ -6,7 +6,7 @@ export default function Main() {
     title: "",
     author: "",
     content: "",
-    category: "FrontEnd",
+    category: "",
     available: false,
   });
 
@@ -41,7 +41,7 @@ export default function Main() {
       title: "",
       author: "",
       content: "",
-      category: "FrontEnd",
+      category: "",
       available: false,
     });
   };
@@ -129,11 +129,12 @@ export default function Main() {
               <select
                 id="category"
                 name="category"
-                className="form__inputArea"
+                className="form__inputArea form__inputArea--selector"
                 value={formData.category}
                 onChange={handleFormData}
                 required
               >
+                <option value="">---</option>
                 <option value="FrontEnd">FrontEnd</option>
                 <option value="BackEnd">BackEnd</option>
                 <option value="UI/UX">UI/UX</option>

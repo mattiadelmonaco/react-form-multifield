@@ -118,7 +118,7 @@ main hr {
 }
 
 .form__inputArea {
-  width: 35%;
+  width: 21.875rem;
   margin: 0.625rem;
   padding: 0.375rem;
   border-radius: 0.5rem;
@@ -143,7 +143,10 @@ main hr {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%;
+}
+
+.form__inputArea--selector {
+  width: 6.25rem;
 }
 
 .form__checkbox {
