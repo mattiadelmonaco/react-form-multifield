@@ -10,20 +10,21 @@ export default function Main() {
 
   const [articlesData, setArticleData] = useState(articles);
 
+  const newArticle = {
+    id: articlesData[articlesData.length - 1].id + 1,
+    title: articleTitle,
+    url: "#",
+    author: articleAuthor,
+    content: articleContent,
+    selected: false,
+    available: isPublished,
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setArticleData([
-      ...articlesData,
-      {
-        id: articlesData[articlesData.length - 1].id + 1,
-        title: articleTitle,
-        url: "#",
-        author: articleAuthor,
-        content: articleContent,
-        selected: false,
-        available: isPublished,
-      },
-    ]);
+    setArticleData([...articlesData, newArticle]);
+
+    // Reset input after submit
     setArticleTitle("");
     setArticleAuthor("");
     setArticleContent("");
