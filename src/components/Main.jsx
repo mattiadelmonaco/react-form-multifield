@@ -2,34 +2,48 @@ import { useState } from "react";
 import articles from "../data/articlesData";
 
 export default function Main() {
-  const [articleTitle, setArticleTitle] = useState("");
-  const [articleAuthor, setArticleAuthor] = useState("");
-  const [articleContent, setArticleContent] = useState("");
-  const [articleCategory, setArticleCategory] = useState("FrontEnd");
-  const [isPublished, setIsPublished] = useState(false);
+  const [formData, setFormData] = useState({
+    title: "",
+    author: "",
+    content: "",
+    category: "FrontEnd",
+    available: false,
+  });
 
   const [articlesData, setArticleData] = useState(articles);
 
-  const newArticle = {
-    id: articlesData[articlesData.length - 1].id + 1,
-    title: articleTitle,
-    url: "#",
-    author: articleAuthor,
-    content: articleContent,
-    selected: false,
-    available: isPublished,
+  const handleFormData = (e) => {
+    e.target.type === "checkbox" ? e.target.checked : e.target.value;
+
+    setFormData((currentFormData) => ({
+      ...currentFormData,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const handleSubmit = (e) => {
+    const newArticle = {
+      id: articlesData[articlesData.length - 1].id + 1,
+      title: formData.title,
+      url: "#",
+      author: formData.author,
+      content: formData.content,
+      category: formData.category,
+      available: formData.available,
+    };
+
     e.preventDefault();
+
     setArticleData([...articlesData, newArticle]);
 
     // Reset input after submit
-    setArticleTitle("");
-    setArticleAuthor("");
-    setArticleContent("");
-    setArticleCategory("FrontEnd");
-    setIsPublished(false);
+    setFormData({
+      title: "",
+      author: "",
+      content: "",
+      category: "FrontEnd",
+      available: false,
+    });
   };
 
   const removeArticle = (id) => {
@@ -56,7 +70,7 @@ export default function Main() {
                   </a>
                   <h3 className="padding-bottom-4">{article.author}</h3>
                   <p className="padding-bottom-4">{article.content}</p>
-                  <p className="padding-bottom-4">{article.selected}</p>
+                  <p className="padding-bottom-4">{article.category}</p>
                   <p className="padding-bottom-4">
                     {article.available ? "Pubblicato" : "Non pubblicato"}
                   </p>
@@ -86,40 +100,38 @@ export default function Main() {
             <input
               className="form__inputArea"
               type="text"
+              name="title"
               placeholder="Inserisci titolo nuovo articolo"
-              value={articleTitle}
-              onChange={(e) => {
-                setArticleTitle(e.target.value);
-              }}
+              value={formData.title}
+              onChange={handleFormData}
               required
             />
             <input
               className="form__inputArea"
               type="text"
+              name="author"
               placeholder="Inserisci autore nuovo articolo"
-              value={articleAuthor}
-              onChange={(e) => {
-                setArticleAuthor(e.target.value);
-              }}
+              value={formData.author}
+              onChange={handleFormData}
               required
             />
-            <input
+            <textarea
               className="form__inputArea form__contentArea"
               type="text"
+              name="content"
               placeholder="Inserisci contenuto nuovo articolo"
-              value={articleContent}
-              onChange={(e) => {
-                setArticleContent(e.target.value);
-              }}
+              value={formData.content}
+              onChange={handleFormData}
               required
             />
             <div className="form__select">
               <label htmlFor="category">Scegli una categoria:</label>
               <select
                 id="category"
+                name="category"
                 className="form__inputArea"
-                value={articleCategory}
-                onChange={(e) => setArticleCategory(e.target.value)}
+                value={formData.category}
+                onChange={handleFormData}
                 required
               >
                 <option value="FrontEnd">FrontEnd</option>
@@ -132,9 +144,10 @@ export default function Main() {
               <input
                 id="pubblicato"
                 type="checkbox"
+                name="available"
                 className="form__checkbox--input"
-                checked={isPublished}
-                onChange={(e) => setIsPublished(e.target.checked)}
+                checked={formData.available}
+                onChange={handleFormData}
               />
             </div>
             <button className="form__submitBtn" type="submit">
