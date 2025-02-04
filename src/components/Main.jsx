@@ -3,6 +3,9 @@ import articles from "../data/articlesData";
 
 export default function Main() {
   const [articleTitle, setArticleTitle] = useState("");
+  const [articleAuthor, setArticleAuthor] = useState("");
+  const [articleContent, setArticleContent] = useState("");
+  const [isPublished, setIsPublished] = useState(false);
 
   const [articlesData, setArticleData] = useState(articles);
 
@@ -14,9 +17,16 @@ export default function Main() {
         id: articlesData[articlesData.length - 1].id + 1,
         title: articleTitle,
         url: "#",
+        author: articleAuthor,
+        content: articleContent,
+        selected: false,
+        available: isPublished,
       },
     ]);
     setArticleTitle("");
+    setArticleAuthor("");
+    setArticleContent("");
+    setIsPublished(false);
   };
 
   const removeArticle = (id) => {
@@ -39,8 +49,14 @@ export default function Main() {
               return (
                 <li key={article.id} className="article">
                   <a href={article.url} className="article__title">
-                    <h3>{article.title}</h3>
+                    <h2>{article.title}</h2>
                   </a>
+                  <h3 className="padding-bottom-4">{article.author}</h3>
+                  <p className="padding-bottom-4">{article.content}</p>
+                  <p className="padding-bottom-4">{article.selected}</p>
+                  <p className="padding-bottom-4">
+                    {article.available ? "Pubblicato" : "Non pubblicato"}
+                  </p>
                   <button
                     onClick={() => removeArticle(article.id)}
                     className="article__btn--delete"
@@ -61,6 +77,8 @@ export default function Main() {
       <hr />
       <section>
         <div className="container">
+          {/* FORM */}
+
           <form onSubmit={handleSubmit} className="form__addArticle">
             <input
               className="form__inputArea"
@@ -76,9 +94,9 @@ export default function Main() {
               className="form__inputArea"
               type="text"
               placeholder="Inserisci autore nuovo articolo"
-              value={articleTitle}
+              value={articleAuthor}
               onChange={(e) => {
-                setArticleTitle(e.target.value);
+                setArticleAuthor(e.target.value);
               }}
               required
             />
@@ -86,9 +104,9 @@ export default function Main() {
               className="form__inputArea form__contentArea"
               type="text"
               placeholder="Inserisci contenuto nuovo articolo"
-              value={articleTitle}
+              value={articleContent}
               onChange={(e) => {
-                setArticleTitle(e.target.value);
+                setArticleContent(e.target.value);
               }}
               required
             />
@@ -106,12 +124,16 @@ export default function Main() {
                 id="pubblicato"
                 type="checkbox"
                 className="form__checkbox--input"
+                checked={isPublished}
+                onChange={(e) => setIsPublished(e.target.checked)}
               />
             </div>
             <button className="form__submitBtn" type="submit">
               Aggiungi articolo
             </button>
           </form>
+
+          {/* /FORM */}
         </div>
       </section>
     </main>

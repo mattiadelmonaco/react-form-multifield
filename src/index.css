@@ -17,6 +17,10 @@ body {
   margin: 0 auto;
 }
 
+.padding-bottom-4 {
+  padding-bottom: 0.25rem;
+}
+
 /* HEADER */
 
 header {
@@ -48,28 +52,29 @@ main hr {
 
 .article {
   display: flex;
+  flex-direction: column;
   align-items: center;
   list-style: none;
   margin: 0.625rem 0;
+  border-bottom: 0.125rem solid lightgrey;
+  padding-bottom: 1.25rem;
 }
 
 .article__title {
-  font-size: 1.75rem;
+  font-size: 1.25rem;
   color: black;
-  padding-right: 1.25rem;
-  margin-right: 1.25rem;
-  border-right: 0.125rem solid lightgrey;
   text-decoration: none;
 }
 
 .article__btn--delete {
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   color: rgb(183, 0, 0);
   cursor: pointer;
   border: none;
   border-radius: 0.5rem;
   transition: 0.4s;
+  margin-top: 0.625rem;
 }
 
 .article__btn--delete:hover {
