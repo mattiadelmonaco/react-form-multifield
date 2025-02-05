@@ -13,11 +13,12 @@ export default function Main() {
   const [articlesData, setArticleData] = useState(articles);
 
   const handleFormData = (e) => {
-    e.target.type === "checkbox" ? e.target.checked : e.target.value;
+    const value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
 
     setFormData((currentFormData) => ({
       ...currentFormData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: value,
     }));
   };
 
